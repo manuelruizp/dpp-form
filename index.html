@@ -15,7 +15,7 @@
       <!-- PERSONA -->
 
       <div class="card mb-3">
-        <div class="card-header bg-light fw-bold">
+        <div class="card-header bg-secondary text-white font-weight-bold">
           Persona que recibe en la obra o proyecto
         </div>
         <div class="card-body">
@@ -39,7 +39,7 @@
 
       <!-- UBICACIÓN Y LOCALIZACIÓN -->
       <div class="card mb-3">
-        <div class="card-header">Ubicación y localización</div>
+        <div class="card-header bg-secondary text-white font-weight-bold">Ubicación y localización</div>
         <div class="card-body">
           <div class="row align-items-center g-3">
             <!-- Pregunta -->
@@ -71,7 +71,7 @@
 
       <!-- ENTORNO -->
       <div class="card mb-3">
-        <div class="card-header">Entorno inmediato</div>
+        <div class="card-header bg-secondary text-white font-weight-bold">Entorno inmediato</div>
         <div class="card-body">
           <textarea class="form-control" placeholder="Descripción del entorno inmediato"
             name="ImmediateEnvironment"></textarea>
@@ -80,7 +80,7 @@
 
       <!-- DERECHO DE VIA -->
       <div class="card mb-3">
-        <div class="card-header">Derecho de Vía</div>
+        <div class="card-header bg-secondary text-white font-weight-bold">Derecho de Vía</div>
         <div class="card-body">
           <!-- Control: Applies Section -->
           <div class="row align-items-center mb-3 g-2">
@@ -142,105 +142,9 @@
         </div>
       </div>
 
-      <!-- SECCIÓN UNIFICADA: FRANJA MARÍTIMO-TERRESTRE -->
-      <div class="card mb-3">
-        <div class="card-header">
-          Franja Marítimo-Terrestre
-        </div>
-        <div class="card-body">
-          <!-- 1. Control Principal: Aplica o No -->
-          <div class="row align-items-center mb-3 g-2">
-            <div class="col-12 col-md-6">
-              <label class="fw-bold mb-0">¿El proyecto colinda o se encuentra en zona marítima?</label>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="btn-group w-100" role="group">
-                <input type="radio" class="btn-check" name="MaritimeZoneApplies" id="MaritimeZoneAppliesYes"
-                  value="true" autocomplete="off" />
-                <label class="btn btn-outline-primary" for="MaritimeZoneAppliesYes">Sí, aplica</label>
-
-                <input type="radio" class="btn-check" name="MaritimeZoneApplies" id="MaritimeZoneAppliesNo"
-                  value="false" autocomplete="off" checked />
-                <label class="btn btn-outline-secondary" for="MaritimeZoneAppliesNo">No aplica</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- CONTENIDO DINÁMICO (Se muestra si Aplica) -->
-          <div id="maritimeZoneFullContent" style="display: none">
-            <hr />
-
-            <!-- Bloque A: Distancias -->
-            <div class="row g-3 mb-4">
-              <div class="col-12">
-                <h6 class="text-primary fw-bold">
-                  A. Validación de Distancias
-                </h6>
-              </div>
-              <div class="col-12 col-md-6">
-                <label class="form-label" for="HighTideDistance">Distancia desde pleamar (m)</label>
-                <input type="number" id="HighTideDistance" name="HighTideDistance" class="form-control"
-                  placeholder="0.00" />
-              </div>
-              <div class="col-12 col-md-6">
-                <label class="form-label" for="MaritimeRegulation">Normativa (m)</label>
-                <input type="number" id="MaritimeRegulation" name="MaritimeRegulation" class="form-control"
-                  placeholder="Ej. 60" />
-              </div>
-              <div class="col-12">
-                <label class="d-block mb-2 fw-bold">¿Cumple con la distancia normativa?</label>
-                <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="MaritimeZoneComplies" id="MaritimeZoneCompliesYes"
-                    value="true" autocomplete="off" />
-                  <label class="btn btn-outline-success" for="MaritimeZoneCompliesYes">Sí, cumple</label>
-                  <input type="radio" class="btn-check" name="MaritimeZoneComplies" id="MaritimeZoneCompliesNo"
-                    value="false" autocomplete="off" />
-                  <label class="btn btn-outline-danger" for="MaritimeZoneCompliesNo">No cumple</label>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bloque B: Edificaciones Existentes -->
-            <div class="row g-3 p-3 border rounded bg-light">
-              <div class="col-12">
-                <h6 class="fw-bold">B. Edificaciones dentro de los 60m</h6>
-              </div>
-              <div class="col-12 col-md-6">
-                <label class="mb-0">¿Existen edificaciones previas en la franja?</label>
-              </div>
-              <div class="col-md-6">
-                <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="BuildingsWithin60mExist" id="BuildingsExistYes"
-                    value="true" autocomplete="off" />
-                  <label class="btn btn-outline-danger" for="BuildingsExistYes">Sí existen</label>
-                  <input type="radio" class="btn-check" name="BuildingsWithin60mExist" id="BuildingsExistNo"
-                    value="false" autocomplete="off" checked />
-                  <label class="btn btn-outline-secondary" for="BuildingsExistNo">No existen</label>
-                </div>
-              </div>
-
-              <!-- Descripción (Se muestra si hay edificaciones) -->
-              <div class="col-12" id="buildingsDescriptionContainer" style="display: none">
-                <label class="form-label small fw-bold mt-2" for="BuildingsDescription">Descripción de edificaciones
-                  encontradas</label>
-                <textarea class="form-control" id="BuildingsDescription" name="BuildingsDescription" rows="2"
-                  placeholder="Detalle tipo de edificación, estado, etc."></textarea>
-              </div>
-            </div>
-
-            <!-- Notas Generales de la Sección -->
-            <div class="mt-3">
-              <label class="form-label fw-bold" for="MaritimeZoneNotes">Notas generales de la sección</label>
-              <textarea id="MaritimeZoneNotes" name="MaritimeZoneNotes" class="form-control"
-                placeholder="Observaciones adicionales..." rows="2"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Distancia desde la margen de ríos, cañadas, humedales y manglares -->
       <div class="card mb-3">
-        <div class="card-header">
+        <div class="card-header bg-secondary text-white font-weight-bold">
           Distancia desde la margen de ríos, cañadas, humedales y manglares
         </div>
         <div class="card-body">
@@ -257,7 +161,7 @@
 
                 <input type="radio" class="btn-check" name="WaterBodyApplies" id="wbAppliesNo" value="false"
                   autocomplete="off" checked />
-                <label class="btn btn-outline-secondary" for="wbAppliesNo">No Aplica</label>
+                <label class="btn btn-outline-secondary" for="wbAppliesNo">No aplica</label>
               </div>
             </div>
           </div>
@@ -304,58 +208,122 @@
         </div>
       </div>
 
+
+      <!-- SECCIÓN UNIFICADA: FRANJA MARÍTIMO-TERRESTRE -->
       <div class="card mb-3">
-        <div class="card-header">Accesos a Playa</div>
+        <div class="card-header bg-secondary text-white font-weight-bold">
+          Franja Marítima-Terrestre y Accesos a Playa
+        </div>
         <div class="card-body">
-          <!-- Control: Applies Section -->
+
+          <!-- 1. Control Principal: ¿Es zona costera? -->
           <div class="row align-items-center mb-3 g-2">
             <div class="col-12 col-md-6">
-              <label class="fw-bold mb-0">¿Aplica esta sección?</label>
+              <label class="fw-bold mb-0">¿El proyecto colinda o se encuentra en zona marítima?</label>
             </div>
             <div class="col-12 col-md-6">
               <div class="btn-group w-100" role="group">
-                <input type="radio" class="btn-check" name="BeachAccessApplies" id="BeachAccessAppliesYes" value="true"
-                  autocomplete="off" />
-                <label class="btn btn-outline-primary" for="BeachAccessAppliesYes">Aplica</label>
+                <input type="radio" class="btn-check" name="CoastalZoneApplies" id="CoastalAppliesYes" value="true"
+                  autocomplete="off">
+                <label class="btn btn-outline-primary" for="CoastalAppliesYes">Sí, aplica</label>
 
-                <input type="radio" class="btn-check" name="BeachAccessApplies" id="BeachAccessAppliesNo" value="false"
-                  autocomplete="off" checked />
-                <label class="btn btn-outline-secondary" for="BeachAccessAppliesNo">No aplica</label>
+                <input type="radio" class="btn-check" name="CoastalZoneApplies" id="CoastalAppliesNo" value="false"
+                  autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="CoastalAppliesNo">No aplica</label>
               </div>
             </div>
           </div>
 
-          <!-- Dynamic Content -->
-          <div id="beachAccessContent" style="display: none">
-            <hr />
-            <div class="row g-3">
-              <!-- Complies Section -->
-              <div class="col-12">
-                <label class="d-block mb-2 fw-bold">¿Cumple con los accesos?</label>
-                <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="BeachAccessComplies" id="BeachAccessCompliesYes"
-                    value="true" autocomplete="off" />
-                  <label class="btn btn-outline-success" for="BeachAccessCompliesYes">Sí, cumple</label>
+          <!-- CONTENIDO DINÁMICO COSTERO -->
+          <div id="coastalFullContent" style="display: none">
+            <hr>
 
-                  <input type="radio" class="btn-check" name="BeachAccessComplies" id="BeachAccessCompliesNo"
-                    value="false" autocomplete="off" />
-                  <label class="btn btn-outline-danger" for="BeachAccessCompliesNo">No cumple</label>
+            <!-- PARTE A: FRANJA MARÍTIMO-TERRESTRE (Distancias) -->
+            <div class="row g-3 mb-4">
+              <div class="col-12">
+                <h6 class="text-primary fw-bold">A. Franja Marítimo-Terrestre (Distancias)</h6>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="HighTideDistance">Distancia desde pleamar (m)</label>
+                <input type="number" id="HighTideDistance" name="HighTideDistance" class="form-control"
+                  placeholder="0.00" />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="MaritimeRegulation">Normativa (m)</label>
+                <input type="number" id="MaritimeRegulation" name="MaritimeRegulation" class="form-control"
+                  placeholder="Ej. 60" />
+              </div>
+              <div class="col-12">
+                <label class="d-block mb-2 fw-bold small">¿Cumple con la distancia normativa?</label>
+                <div class="btn-group w-100" role="group">
+                  <input type="radio" class="btn-check" name="MaritimeZoneComplies" id="MaritimeZoneCompliesYes"
+                    value="true" autocomplete="off">
+                  <label class="btn btn-outline-success" for="MaritimeZoneCompliesYes">Sí, cumple</label>
+                  <input type="radio" class="btn-check" name="MaritimeZoneComplies" id="MaritimeZoneCompliesNo"
+                    value="false" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="MaritimeZoneCompliesNo">No cumple</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- PARTE B: EDIFICACIONES EXISTENTES -->
+            <div class="row g-3 mb-4 p-3 border rounded bg-light">
+              <div class="col-12">
+                <h6 class="fw-bold">B. Edificaciones dentro de los 60m</h6>
+              </div>
+              <div class="col-12 col-md-7">
+                <label class="mb-0">¿Existen edificaciones previas en la franja?</label>
+              </div>
+              <div class="col-md-5">
+                <div class="btn-group w-100 btn-group-sm" role="group">
+                  <input type="radio" class="btn-check" name="BuildingsWithin60mExist" id="BuildingsExistYes"
+                    value="true" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="BuildingsExistYes">Sí existen</label>
+                  <input type="radio" class="btn-check" name="BuildingsWithin60mExist" id="BuildingsExistNo"
+                    value="false" autocomplete="off" checked>
+                  <label class="btn btn-outline-secondary" for="BuildingsExistNo">No existen</label>
                 </div>
               </div>
 
-              <!-- Notes -->
-              <div class="col-12">
-                <textarea id="BeachAccessNotes" name="BeachAccessNotes" class="form-control"
-                  placeholder="Notas sobre el acceso a la playa..." rows="2"></textarea>
+              <div class="col-12" id="buildingsDescriptionContainer" style="display: none">
+                <textarea class="form-control mt-2" id="BuildingsDescription" name="BuildingsDescription" rows="2"
+                  placeholder="Describa las edificaciones encontradas..."></textarea>
               </div>
             </div>
+
+            <!-- PARTE C: ACCESOS A PLAYA -->
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h6 class="text-primary fw-bold">C. Accesos a Playa</h6>
+              </div>
+              <div class="col-12">
+                <label class="d-block mb-2 fw-bold small">¿El proyecto cumple con los accesos públicos a la
+                  playa?</label>
+                <div class="btn-group w-100" role="group">
+                  <input type="radio" class="btn-check" name="BeachAccessComplies" id="BeachAccessCompliesYes"
+                    value="true" autocomplete="off">
+                  <label class="btn btn-outline-success" for="BeachAccessCompliesYes">Sí, cumple</label>
+                  <input type="radio" class="btn-check" name="BeachAccessComplies" id="BeachAccessCompliesNo"
+                    value="false" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="BeachAccessCompliesNo">No cumple</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notas Generales de la Sección Costera -->
+            <div class="mt-3">
+              <label class="form-label fw-bold small" for="CoastalZoneNotes">Notas generales (Franja y Accesos)</label>
+              <textarea id="CoastalZoneNotes" name="CoastalZoneNotes" class="form-control"
+                placeholder="Observaciones adicionales sobre la zona costera..." rows="2"></textarea>
+            </div>
+
           </div>
         </div>
       </div>
 
       <!-- ESTADO DEL PROYECTO -->
       <div class="card mb-3">
-        <div class="card-header">Estado del Proyecto</div>
+        <div class="card-header bg-secondary text-white font-weight-bold">Estado del Proyecto</div>
         <div class="card-body">
           <!-- Project Status Options -->
           <div class="btn-group w-100" role="group" aria-label="Project Status">
@@ -380,7 +348,7 @@
 
         <!-- 10. QUANTITY OF BUILDINGS (Main Control) -->
         <div class="card mb-3 border-primary">
-          <div class="card-header bg-primary text-white font-weight-bold">
+          <div class="card-header bg-secondary text-white font-weight-bold">
             Cantidad de edificaciones
           </div>
           <div class="card-body">
@@ -586,7 +554,7 @@
         <div class="card-header bg-dark text-white fw-bold">Linderos (Setbacks)</div>
         <div class="card-body">
 
-          <!-- Sección Aplica / No Aplica -->
+          <!-- Sección Aplica / No aplica -->
           <div class="row align-items-center mb-4 g-2">
             <div class="col-12 col-md-6">
               <label class="fw-bold mb-0">¿Aplican los linderos en este proyecto?</label>
@@ -743,11 +711,11 @@
   <script src="./StreetAddressIsCorrect.js"></script>
   <script src="./MaritimeZoneApplies.js"></script>
   <script src="./BuildingsWithin60mExist.js"></script>
-  <script src="./BeachAccessComplies.js"></script>
   <script src="./Building.js"></script>
   <script src="./Setbacks.js"></script>
   <script src="./RightOfWayApplies.js"></script>
   <script src="./WaterBodyApplies.js"></script>
+  <script src="./CoastalZoneApplies.js"></script>
 </body>
 
 </html>
