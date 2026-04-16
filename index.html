@@ -1,658 +1,766 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Formulario de Inspección</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  </head>
 
-  <body>
-    <div class="container my-5">
-      <h2 class="mb-4 text-center">FORMULARIO DE INSPECCIÓN</h2>
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulario de Inspección</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
 
-      <form id="inspectionForm">
-        <!-- PERSONA -->
+<body>
+  <div class="container my-5">
+    <h2 class="mb-4 text-center">FORMULARIO DE INSPECCIÓN</h2>
 
-        <div class="card mb-3">
-          <div class="card-header bg-light fw-bold">Persona que recibe en la obra o proyecto</div>
-          <div class="card-body">
+    <form id="inspectionForm">
+      <!-- PERSONA -->
+
+      <div class="card mb-3">
+        <div class="card-header bg-light fw-bold">
+          Persona que recibe en la obra o proyecto
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <!-- Full Name -->
+            <div class="col-12 col-md-6">
+              <label class="form-label small fw-bold" for="ReceiverFullName">Nombres completo</label>
+              <input type="text" id="ReceiverFullName" name="ReceiverFullName" class="form-control"
+                placeholder="Ej. Juan Pérez" />
+            </div>
+
+            <!-- Phone Numbers -->
+            <div class="col-12 col-md-6">
+              <label class="form-label small fw-bold" for="ReceiverPhone">Teléfono</label>
+              <input type="tel" id="ReceiverPhone" name="ReceiverPhone" class="form-control"
+                placeholder="Ej. 809-000-0000" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UBICACIÓN Y LOCALIZACIÓN -->
+      <div class="card mb-3">
+        <div class="card-header">Ubicación y localización</div>
+        <div class="card-body">
+          <div class="row align-items-center g-3">
+            <!-- Pregunta -->
+            <div class="col-12 col-md-6">
+              <label class="mb-0">¿La dirección está correcta?</label>
+            </div>
+
+            <!-- Botones -->
+            <div class="col-12 col-md-6">
+              <div class="btn-group w-100" role="group">
+                <input type="radio" class="btn-check" name="StreetAddressIsCorrect" id="StreetAddressIsCorrectYes"
+                  value="true" autocomplete="off" />
+                <label class="btn btn-outline-success" for="StreetAddressIsCorrectYes">Sí</label>
+
+                <input type="radio" class="btn-check" name="StreetAddressIsCorrect" id="StreetAddressIsCorrectNo"
+                  value="false" autocomplete="off" />
+                <label class="btn btn-outline-danger" for="StreetAddressIsCorrectNo">No</label>
+              </div>
+            </div>
+
+            <!-- Notas (Ocultas por defecto) -->
+            <div class="col-12" id="AddressNotesContainer" style="display: none">
+              <textarea id="StreetAddressNotes" name="StreetAddressNotes" class="form-control"
+                placeholder="Explique por qué la dirección no es correcta..." rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENTORNO -->
+      <div class="card mb-3">
+        <div class="card-header">Entorno inmediato</div>
+        <div class="card-body">
+          <textarea class="form-control" placeholder="Descripción del entorno inmediato"
+            name="ImmediateEnvironment"></textarea>
+        </div>
+      </div>
+
+      <!-- DERECHO DE VIA -->
+      <div class="card mb-3">
+        <div class="card-header">Derecho de Vía</div>
+        <div class="card-body">
+          <!-- Control: Applies Section -->
+          <div class="row align-items-center mb-3 g-2">
+            <div class="col-12 col-md-6">
+              <label class="fw-bold mb-0">¿Aplica esta sección?</label>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="btn-group w-100" role="group">
+                <input type="radio" class="btn-check" name="RightOfWayApplies" id="rowAppliesYes" value="true"
+                  autocomplete="off" />
+                <label class="btn btn-outline-primary" for="rowAppliesYes">Aplica</label>
+
+                <input type="radio" class="btn-check" name="RightOfWayApplies" id="rowAppliesNo" value="false"
+                  autocomplete="off" checked />
+                <label class="btn btn-outline-secondary" for="rowAppliesNo">No aplica</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Content -->
+          <div id="rightOfWayContent" style="display: none">
+            <hr />
             <div class="row g-3">
-              <!-- Full Name -->
-              <div class="col-12 col-md-6">
-                <label class="form-label small fw-bold" for="ReceiverFullName">Nombres completo</label>
-                <input type="text" id="ReceiverFullName" name="ReceiverFullName" class="form-control" placeholder="Ej. Juan Pérez" />
+              <!-- Distancia Existente -->
+              <div class="col-12 col-md-4">
+                <label class="form-label" for="RightOfWayActual">Distancia existente (m)</label>
+                <input type="number" id="RightOfWayActual" name="RightOfWayActual" class="form-control"
+                  placeholder="0.00" />
               </div>
 
-              <!-- Phone Numbers -->
-              <div class="col-12 col-md-6">
-                <label class="form-label small fw-bold" for="ReceiverPhone">Teléfono</label>
-                <input type="tel" id="ReceiverPhone" name="ReceiverPhone" class="form-control" placeholder="Ej. 809-000-0000" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- UBICACIÓN Y LOCALIZACIÓN -->
-        <div class="card mb-3">
-          <div class="card-header">Ubicación y localización</div>
-          <div class="card-body">
-            <div class="row align-items-center g-3">
-              <!-- Pregunta -->
-              <div class="col-12 col-md-6">
-                <label class="mb-0">¿La dirección está correcta?</label>
+              <!-- Normativa -->
+              <div class="col-12 col-md-4">
+                <label class="form-label" for="RightOfWayReq">Normativa (m)</label>
+                <input type="number" id="RightOfWayReq" name="RightOfWayReq" class="form-control"
+                  placeholder="Ej. 5.00" />
               </div>
 
-              <!-- Botones -->
-              <div class="col-12 col-md-6">
+              <!-- ¿Cumple? -->
+              <div class="col-12 col-md-4">
+                <label class="form-label d-block">¿Cumple?</label>
                 <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="StreetAddressIsCorrect" id="StreetAddressIsCorrectYes" value="true" autocomplete="off" />
-                  <label class="btn btn-outline-success" for="StreetAddressIsCorrectYes">Sí</label>
+                  <input type="radio" class="btn-check" name="RightOfWayComplies" id="rowCompliesYes" value="true"
+                    autocomplete="off" />
+                  <label class="btn btn-outline-success" for="rowCompliesYes">Sí</label>
 
-                  <input type="radio" class="btn-check" name="StreetAddressIsCorrect" id="StreetAddressIsCorrectNo" value="false" autocomplete="off" />
-                  <label class="btn btn-outline-danger" for="StreetAddressIsCorrectNo">No</label>
+                  <input type="radio" class="btn-check" name="RightOfWayComplies" id="rowCompliesNo" value="false"
+                    autocomplete="off" />
+                  <label class="btn btn-outline-danger" for="rowCompliesNo">No</label>
                 </div>
               </div>
 
-              <!-- Notas (Ocultas por defecto) -->
-              <div class="col-12" id="AddressNotesContainer" style="display: none">
-                <textarea id="StreetAddressNotes" name="StreetAddressNotes" class="form-control" placeholder="Explique por qué la dirección no es correcta..." rows="2"></textarea>
+              <!-- Notas -->
+              <div class="col-12">
+                <textarea id="RightOfWayNotes" name="RightOfWayNotes" class="form-control"
+                  placeholder="Notas sobre el derecho de vía..." rows="2"></textarea>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- ENTORNO -->
-        <div class="card mb-3">
-          <div class="card-header">Entorno inmediato</div>
-          <div class="card-body">
-            <textarea class="form-control" placeholder="Descripción del entorno inmediato" name="ImmediateEnvironment"></textarea>
-          </div>
+      <!-- SECCIÓN UNIFICADA: FRANJA MARÍTIMO-TERRESTRE -->
+      <div class="card mb-3">
+        <div class="card-header">
+          Inspección de Franja Marítimo-Terrestre
         </div>
+        <div class="card-body">
+          <!-- 1. Control Principal: Aplica o No -->
+          <div class="row align-items-center mb-3 g-2">
+            <div class="col-12 col-md-6">
+              <label class="fw-bold mb-0">¿El proyecto colinda o se encuentra en zona marítima?</label>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="btn-group w-100" role="group">
+                <input type="radio" class="btn-check" name="MaritimeZoneApplies" id="MaritimeZoneAppliesYes"
+                  value="true" autocomplete="off" />
+                <label class="btn btn-outline-primary" for="MaritimeZoneAppliesYes">Sí, aplica</label>
 
-        <!-- DERECHO DE VIA -->
-        <div class="card mb-3">
-          <div class="card-header">Derecho de Vía</div>
-          <div class="card-body">
-            <!-- Control: Applies Section -->
-            <div class="row align-items-center mb-3 g-2">
-              <div class="col-12 col-md-6">
-                <label class="fw-bold mb-0">¿Aplica esta sección?</label>
+                <input type="radio" class="btn-check" name="MaritimeZoneApplies" id="MaritimeZoneAppliesNo"
+                  value="false" autocomplete="off" checked />
+                <label class="btn btn-outline-secondary" for="MaritimeZoneAppliesNo">No aplica</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTENIDO DINÁMICO (Se muestra si Aplica) -->
+          <div id="maritimeZoneFullContent" style="display: none">
+            <hr />
+
+            <!-- Bloque A: Distancias -->
+            <div class="row g-3 mb-4">
+              <div class="col-12">
+                <h6 class="text-primary fw-bold">
+                  A. Validación de Distancias
+                </h6>
               </div>
               <div class="col-12 col-md-6">
+                <label class="form-label" for="HighTideDistance">Distancia desde pleamar (m)</label>
+                <input type="number" id="HighTideDistance" name="HighTideDistance" class="form-control"
+                  placeholder="0.00" />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="MaritimeRegulation">Normativa (m)</label>
+                <input type="number" id="MaritimeRegulation" name="MaritimeRegulation" class="form-control"
+                  placeholder="Ej. 60" />
+              </div>
+              <div class="col-12">
+                <label class="d-block mb-2 fw-bold">¿Cumple con la distancia normativa?</label>
                 <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="RightOfWayApplies" id="rowAppliesYes" value="true" autocomplete="off" />
-                  <label class="btn btn-outline-primary" for="rowAppliesYes">Aplica</label>
-
-                  <input type="radio" class="btn-check" name="RightOfWayApplies" id="rowAppliesNo" value="false" autocomplete="off" checked />
-                  <label class="btn btn-outline-secondary" for="rowAppliesNo">No aplica</label>
+                  <input type="radio" class="btn-check" name="MaritimeZoneComplies" id="MaritimeZoneCompliesYes"
+                    value="true" autocomplete="off" />
+                  <label class="btn btn-outline-success" for="MaritimeZoneCompliesYes">Sí, cumple</label>
+                  <input type="radio" class="btn-check" name="MaritimeZoneComplies" id="MaritimeZoneCompliesNo"
+                    value="false" autocomplete="off" />
+                  <label class="btn btn-outline-danger" for="MaritimeZoneCompliesNo">No cumple</label>
                 </div>
               </div>
             </div>
 
-            <!-- Dynamic Content -->
-            <div id="rightOfWayContent" style="display: none">
-              <hr />
-              <div class="row g-3">
-                <!-- Distancia Existente -->
-                <div class="col-12 col-md-4">
-                  <label class="form-label" for="RightOfWayActual">Distancia existente (m)</label>
-                  <input type="number" id="RightOfWayActual" name="RightOfWayActual" class="form-control" placeholder="0.00" />
-                </div>
-
-                <!-- Normativa -->
-                <div class="col-12 col-md-4">
-                  <label class="form-label" for="RightOfWayReq">Normativa (m)</label>
-                  <input type="number" id="RightOfWayReq" name="RightOfWayReq" class="form-control" placeholder="Ej. 5.00" />
-                </div>
-
-                <!-- ¿Cumple? -->
-                <div class="col-12 col-md-4">
-                  <label class="form-label d-block">¿Cumple?</label>
-                  <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="RightOfWayComplies" id="rowCompliesYes" value="true" autocomplete="off" />
-                    <label class="btn btn-outline-success" for="rowCompliesYes">Sí</label>
-
-                    <input type="radio" class="btn-check" name="RightOfWayComplies" id="rowCompliesNo" value="false" autocomplete="off" />
-                    <label class="btn btn-outline-danger" for="rowCompliesNo">No</label>
-                  </div>
-                </div>
-
-                <!-- Notas -->
-                <div class="col-12">
-                  <textarea id="RightOfWayNotes" name="RightOfWayNotes" class="form-control" placeholder="Notas sobre el derecho de vía..." rows="2"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- DISTANCIA DE LA FRANJA MARITIMO-TERRESTRE -->
-        <div class="card mb-3">
-          <div class="card-header">Franja Marítimo-Terrestre – Distancia</div>
-          <div class="card-body">
-            <!-- Seccion Aplica / No Aplica -->
-            <div class="row align-items-center mb-3 g-2">
-              <div class="col-12 col-md-6">
-                <label class="fw-bold mb-0">¿Aplica esta sección?</label>
+            <!-- Bloque B: Edificaciones Existentes -->
+            <div class="row g-3 p-3 border rounded bg-light">
+              <div class="col-12">
+                <h6 class="fw-bold">B. Edificaciones dentro de los 60m</h6>
               </div>
               <div class="col-12 col-md-6">
+                <label class="mb-0">¿Existen edificaciones previas en la franja?</label>
+              </div>
+              <div class="col-md-6">
                 <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="MaritimeZoneApplies" id="MaritimeZoneAppliesYes" value="true" autocomplete="off" />
-                  <label class="btn btn-outline-primary" for="MaritimeZoneAppliesYes">Aplica</label>
-
-                  <input type="radio" class="btn-check" name="MaritimeZoneApplies" id="MaritimeZoneAppliesNo" value="false" autocomplete="off" checked />
-                  <label class="btn btn-outline-secondary" for="MaritimeZoneAppliesNo">No aplica</label>
-                </div>
-              </div>
-            </div>
-
-            <!-- CONTENIDO (Se oculta/muestra) -->
-            <div id="maritimeZoneContent" style="display: none">
-              <hr />
-              <div class="row g-3">
-                <div class="col-12 col-md-6">
-                  <label class="form-label" for="HighTideDistance">Distancia desde pleamar (m)</label>
-                  <input type="number" id="HighTideDistance" name="HighTideDistance" class="form-control" placeholder="0.00" />
-                </div>
-
-                <div class="col-12 col-md-6">
-                  <label class="form-label" for="MaritimeRegulation">Normativa (m)</label>
-                  <input type="number" id="MaritimeRegulation" name="MaritimeRegulation" class="form-control" placeholder="Ej. 60" />
-                </div>
-
-                <!-- ¿Cumple? con Botones de colores -->
-                <div class="col-12">
-                  <label class="d-block mb-2 fw-bold">¿Cumple con la normativa?</label>
-                  <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="MaritimeZoneComplies" id="MaritimeZoneCompliesYes" value="true" autocomplete="off" />
-                    <label class="btn btn-outline-success" for="MaritimeZoneCompliesYes">Sí, cumple</label>
-
-                    <input type="radio" class="btn-check" name="MaritimeZoneComplies" id="MaritimeZoneCompliesNo" value="false" autocomplete="off" />
-                    <label class="btn btn-outline-danger" for="MaritimeZoneCompliesNo">No cumple</label>
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <textarea id="MaritimeZoneNotes" name="MaritimeZoneNotes" class="form-control" placeholder="Notas sobre la franja marítima..." rows="2"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Franja Marítimo-Terrestre – Edificaciones dentro de los 60 metros -->
-        <div class="card mb-3">
-          <div class="card-header">Franja Marítimo-Terrestre – Edificaciones dentro de los 60 metros</div>
-          <div class="card-body">
-            <!-- Sección de Control: Existen Edificaciones -->
-            <div class="row align-items-center mb-3 g-2">
-              <div class="col-12 col-md-6">
-                <label class="fw-bold mb-0">¿Existen edificaciones dentro de los 60 metros?</label>
-              </div>
-              <div class="col-12 col-md-6">
-                <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="BuildingsWithin60mExist" id="BuildingsExistYes" value="true" autocomplete="off" />
-                  <label class="btn btn-outline-danger" for="BuildingsExistYes">Sí, existen</label>
-
-                  <input type="radio" class="btn-check" name="BuildingsWithin60mExist" id="BuildingsExistNo" value="false" autocomplete="off" checked />
+                  <input type="radio" class="btn-check" name="BuildingsWithin60mExist" id="BuildingsExistYes"
+                    value="true" autocomplete="off" />
+                  <label class="btn btn-outline-danger" for="BuildingsExistYes">Sí existen</label>
+                  <input type="radio" class="btn-check" name="BuildingsWithin60mExist" id="BuildingsExistNo"
+                    value="false" autocomplete="off" checked />
                   <label class="btn btn-outline-secondary" for="BuildingsExistNo">No existen</label>
                 </div>
               </div>
+
+              <!-- Descripción (Se muestra si hay edificaciones) -->
+              <div class="col-12" id="buildingsDescriptionContainer" style="display: none">
+                <label class="form-label small fw-bold mt-2" for="BuildingsDescription">Descripción de edificaciones
+                  encontradas</label>
+                <textarea class="form-control" id="BuildingsDescription" name="BuildingsDescription" rows="2"
+                  placeholder="Detalle tipo de edificación, estado, etc."></textarea>
+              </div>
             </div>
 
-            <!-- Contenido Dinámico: Descripción -->
-            <div id="buildingsDescriptionContainer" style="display: none">
-              <div class="col-12 mt-3">
-                <label class="form-label fw-bold" for="BuildingsDescription">Descripción de las edificaciones</label>
-                <textarea class="form-control" id="BuildingsDescription" name="BuildingsDescription" rows="3" placeholder="Detalle las edificaciones encontradas..."></textarea>
-              </div>
+            <!-- Notas Generales de la Sección -->
+            <div class="mt-3">
+              <label class="form-label fw-bold" for="MaritimeZoneNotes">Notas generales de la sección</label>
+              <textarea id="MaritimeZoneNotes" name="MaritimeZoneNotes" class="form-control"
+                placeholder="Observaciones adicionales..." rows="2"></textarea>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Distancia desde la margen de ríos, cañadas, humedales y manglares -->
-        <div class="card mb-3">
-          <div class="card-header">Distancia desde la margen de ríos, cañadas, humedales y manglares</div>
-          <div class="card-body">
-            <!-- Control: Applies Section -->
-            <div class="row align-items-center mb-3 g-2">
-              <div class="col-12 col-md-6">
-                <label class="fw-bold mb-0">¿Aplica la cercanía a cuerpos de agua?</label>
+      <!-- Distancia desde la margen de ríos, cañadas, humedales y manglares -->
+      <div class="card mb-3">
+        <div class="card-header">
+          Distancia desde la margen de ríos, cañadas, humedales y manglares
+        </div>
+        <div class="card-body">
+          <!-- Control: Applies Section -->
+          <div class="row align-items-center mb-3 g-2">
+            <div class="col-12 col-md-6">
+              <label class="fw-bold mb-0">¿Aplica la cercanía a cuerpos de agua?</label>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="btn-group w-100" role="group">
+                <input type="radio" class="btn-check" name="WaterBodyApplies" id="wbAppliesYes" value="true"
+                  autocomplete="off" />
+                <label class="btn btn-outline-primary" for="wbAppliesYes">Aplica</label>
+
+                <input type="radio" class="btn-check" name="WaterBodyApplies" id="wbAppliesNo" value="false"
+                  autocomplete="off" checked />
+                <label class="btn btn-outline-secondary" for="wbAppliesNo">No Aplica</label>
               </div>
-              <div class="col-12 col-md-6">
+            </div>
+          </div>
+
+          <!-- Dynamic Content -->
+          <div id="waterBodyContent" style="display: none">
+            <hr />
+            <div class="row g-3 align-items-end">
+              <!-- Distance Input -->
+              <div class="col-12 col-md-4">
+                <label class="form-label" for="WaterBodyDistance">Distancia existente (m)</label>
+                <input type="number" id="WaterBodyDistance" name="WaterBodyDistance" class="form-control"
+                  placeholder="0.00" />
+              </div>
+
+              <!-- Regulation (Editable) -->
+              <div class="col-12 col-md-4">
+                <label class="form-label" for="WaterBodyRegulation">Normativa (m)</label>
+                <input type="number" id="WaterBodyRegulation" name="WaterBodyRegulation" class="form-control"
+                  placeholder="Ej. 30" />
+              </div>
+
+              <!-- Complies Radio Buttons -->
+              <div class="col-12 col-md-4">
+                <label class="form-label d-block">¿Cumple?</label>
                 <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="WaterBodyApplies" id="wbAppliesYes" value="true" autocomplete="off" />
-                  <label class="btn btn-outline-primary" for="wbAppliesYes">Aplica</label>
+                  <input type="radio" class="btn-check" name="WaterBodyComplies" id="WaterBodyCompliesYes" value="true"
+                    autocomplete="off" />
+                  <label class="btn btn-outline-success" for="WaterBodyCompliesYes">Sí</label>
 
-                  <input type="radio" class="btn-check" name="WaterBodyApplies" id="wbAppliesNo" value="false" autocomplete="off" checked />
-                  <label class="btn btn-outline-secondary" for="wbAppliesNo">No Aplica</label>
+                  <input type="radio" class="btn-check" name="WaterBodyComplies" id="WaterBodyCompliesNo" value="false"
+                    autocomplete="off" />
+                  <label class="btn btn-outline-danger" for="WaterBodyCompliesNo">No</label>
                 </div>
               </div>
-            </div>
 
-            <!-- Dynamic Content -->
-            <div id="waterBodyContent" style="display: none">
-              <hr />
-              <div class="row g-3 align-items-end">
-                <!-- Distance Input -->
-                <div class="col-12 col-md-4">
-                  <label class="form-label" for="WaterBodyDistance">Distancia existente (m)</label>
-                  <input type="number" id="WaterBodyDistance" name="WaterBodyDistance" class="form-control" placeholder="0.00" />
-                </div>
-
-                <!-- Regulation (Editable) -->
-                <div class="col-12 col-md-4">
-                  <label class="form-label" for="WaterBodyRegulation">Normativa (m)</label>
-                  <input type="number" id="WaterBodyRegulation" name="WaterBodyRegulation" class="form-control" placeholder="Ej. 30" />
-                </div>
-
-                <!-- Complies Radio Buttons -->
-                <div class="col-12 col-md-4">
-                  <label class="form-label d-block">¿Cumple?</label>
-                  <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="WaterBodyComplies" id="WaterBodyCompliesYes" value="true" autocomplete="off" />
-                    <label class="btn btn-outline-success" for="WaterBodyCompliesYes">Sí</label>
-
-                    <input type="radio" class="btn-check" name="WaterBodyComplies" id="WaterBodyCompliesNo" value="false" autocomplete="off" />
-                    <label class="btn btn-outline-danger" for="WaterBodyCompliesNo">No</label>
-                  </div>
-                </div>
-
-                <!-- Notes -->
-                <div class="col-12">
-                  <textarea id="WaterBodyNotes" name="WaterBodyNotes" class="form-control" placeholder="Notas sobre la distancia de cuerpos de agua..." rows="2"></textarea>
-                </div>
+              <!-- Notes -->
+              <div class="col-12">
+                <textarea id="WaterBodyNotes" name="WaterBodyNotes" class="form-control"
+                  placeholder="Notas sobre la distancia de cuerpos de agua..." rows="2"></textarea>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="card mb-3">
-          <div class="card-header">Accesos a Playa</div>
-          <div class="card-body">
-            <!-- Control: Applies Section -->
-            <div class="row align-items-center mb-3 g-2">
-              <div class="col-12 col-md-6">
-                <label class="fw-bold mb-0">¿Aplica esta sección?</label>
+      <div class="card mb-3">
+        <div class="card-header">Accesos a Playa</div>
+        <div class="card-body">
+          <!-- Control: Applies Section -->
+          <div class="row align-items-center mb-3 g-2">
+            <div class="col-12 col-md-6">
+              <label class="fw-bold mb-0">¿Aplica esta sección?</label>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="btn-group w-100" role="group">
+                <input type="radio" class="btn-check" name="BeachAccessApplies" id="BeachAccessAppliesYes" value="true"
+                  autocomplete="off" />
+                <label class="btn btn-outline-primary" for="BeachAccessAppliesYes">Aplica</label>
+
+                <input type="radio" class="btn-check" name="BeachAccessApplies" id="BeachAccessAppliesNo" value="false"
+                  autocomplete="off" checked />
+                <label class="btn btn-outline-secondary" for="BeachAccessAppliesNo">No aplica</label>
               </div>
-              <div class="col-12 col-md-6">
+            </div>
+          </div>
+
+          <!-- Dynamic Content -->
+          <div id="beachAccessContent" style="display: none">
+            <hr />
+            <div class="row g-3">
+              <!-- Complies Section -->
+              <div class="col-12">
+                <label class="d-block mb-2 fw-bold">¿Cumple con los accesos?</label>
                 <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="BeachAccessApplies" id="BeachAccessAppliesYes" value="true" autocomplete="off" />
-                  <label class="btn btn-outline-primary" for="BeachAccessAppliesYes">Aplica</label>
+                  <input type="radio" class="btn-check" name="BeachAccessComplies" id="BeachAccessCompliesYes"
+                    value="true" autocomplete="off" />
+                  <label class="btn btn-outline-success" for="BeachAccessCompliesYes">Sí, cumple</label>
 
-                  <input type="radio" class="btn-check" name="BeachAccessApplies" id="BeachAccessAppliesNo" value="false" autocomplete="off" checked />
-                  <label class="btn btn-outline-secondary" for="BeachAccessAppliesNo">No aplica</label>
+                  <input type="radio" class="btn-check" name="BeachAccessComplies" id="BeachAccessCompliesNo"
+                    value="false" autocomplete="off" />
+                  <label class="btn btn-outline-danger" for="BeachAccessCompliesNo">No cumple</label>
                 </div>
               </div>
-            </div>
 
-            <!-- Dynamic Content -->
-            <div id="beachAccessContent" style="display: none">
-              <hr />
-              <div class="row g-3">
-                <!-- Complies Section -->
-                <div class="col-12">
-                  <label class="d-block mb-2 fw-bold">¿Cumple con los accesos?</label>
-                  <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="BeachAccessComplies" id="BeachAccessCompliesYes" value="true" autocomplete="off" />
-                    <label class="btn btn-outline-success" for="BeachAccessCompliesYes">Sí, cumple</label>
-
-                    <input type="radio" class="btn-check" name="BeachAccessComplies" id="BeachAccessCompliesNo" value="false" autocomplete="off" />
-                    <label class="btn btn-outline-danger" for="BeachAccessCompliesNo">No cumple</label>
-                  </div>
-                </div>
-
-                <!-- Notes -->
-                <div class="col-12">
-                  <textarea id="BeachAccessNotes" name="BeachAccessNotes" class="form-control" placeholder="Notas sobre el acceso a la playa..." rows="2"></textarea>
-                </div>
+              <!-- Notes -->
+              <div class="col-12">
+                <textarea id="BeachAccessNotes" name="BeachAccessNotes" class="form-control"
+                  placeholder="Notas sobre el acceso a la playa..." rows="2"></textarea>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- ESTADO DEL PROYECTO -->
-        <div class="card mb-3">
-          <div class="card-header">Estado del Proyecto</div>
+      <!-- ESTADO DEL PROYECTO -->
+      <div class="card mb-3">
+        <div class="card-header">Estado del Proyecto</div>
+        <div class="card-body">
+          <!-- Project Status Options -->
+          <div class="btn-group w-100" role="group" aria-label="Project Status">
+            <input type="radio" class="btn-check" name="ProjectStatus" id="StatusNotStarted" value="not_started"
+              autocomplete="off" />
+            <label class="btn btn-outline-primary" for="StatusNotStarted">No construido</label>
+
+            <input type="radio" class="btn-check" name="ProjectStatus" id="StatusInConstruction" value="in_construction"
+              autocomplete="off" />
+            <label class="btn btn-outline-primary" for="StatusInConstruction">En construcción</label>
+
+            <input type="radio" class="btn-check" name="ProjectStatus" id="StatusCompleted" value="completed"
+              autocomplete="off" />
+            <label class="btn btn-outline-primary" for="StatusCompleted">Construido</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDIFICACIONES -->
+      <div>
+        <h4 class="mb-3">Edificaciones</h4>
+
+        <!-- 10. QUANTITY OF BUILDINGS (Main Control) -->
+        <div class="card mb-3 border-primary">
+          <div class="card-header bg-primary text-white font-weight-bold">
+            Cantidad de edificaciones
+          </div>
           <div class="card-body">
-            <!-- Project Status Options -->
-            <div class="btn-group w-100" role="group" aria-label="Project Status">
-              <input type="radio" class="btn-check" name="ProjectStatus" id="StatusNotStarted" value="not_started" autocomplete="off" />
-              <label class="btn btn-outline-primary" for="StatusNotStarted">No construido</label>
-
-              <input type="radio" class="btn-check" name="ProjectStatus" id="StatusInConstruction" value="in_construction" autocomplete="off" />
-              <label class="btn btn-outline-primary" for="StatusInConstruction">En construcción</label>
-
-              <input type="radio" class="btn-check" name="ProjectStatus" id="StatusCompleted" value="completed" autocomplete="off" />
-              <label class="btn btn-outline-primary" for="StatusCompleted">Construido</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- EDIFICACIONES -->
-        <div>
-          <h4 class="mb-3">Edificaciones</h4>
-
-          <!-- 10. QUANTITY OF BUILDINGS (Main Control) -->
-          <div class="card mb-3 border-primary">
-            <div class="card-header bg-primary text-white font-weight-bold">Cantidad de edificaciones</div>
-            <div class="card-body">
-              <div class="row g-3 align-items-end">
-                <div class="col-md-4">
-                  <label class="form-label">Planificadas</label>
-                  <input type="number" id="PlannedBuildingCount" name="PlannedBuildingCount" class="form-control" />
-                </div>
-                <div class="col-md-4">
-                  <label class="form-label">Actuales</label>
-                  <input type="number" id="ActualBuildingCount" name="ActualBuildingCount" class="form-control" />
-                </div>
-                <div class="col-md-4">
-                  <label class="d-block mb-2 text-center">¿Concuerdan?</label>
-                  <div class="btn-group w-100">
-                    <input type="radio" class="btn-check" name="BuildingCountMatches" id="bcMatchYes" value="true" />
-                    <label class="btn btn-outline-success" for="bcMatchYes">Sí</label>
-                    <input type="radio" class="btn-check" name="BuildingCountMatches" id="bcMatchNo" value="false" />
-                    <label class="btn btn-outline-danger" for="bcMatchNo">No</label>
-                  </div>
+            <div class="row g-3 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label">Planificadas</label>
+                <input type="number" id="PlannedBuildingCount" name="PlannedBuildingCount" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Actuales</label>
+                <input type="number" id="ActualBuildingCount" name="ActualBuildingCount" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label class="d-block mb-2 text-center">¿Concuerdan?</label>
+                <div class="btn-group w-100">
+                  <input type="radio" class="btn-check" name="BuildingCountMatches" id="bcMatchYes" value="true" />
+                  <label class="btn btn-outline-success" for="bcMatchYes">Sí</label>
+                  <input type="radio" class="btn-check" name="BuildingCountMatches" id="bcMatchNo" value="false" />
+                  <label class="btn btn-outline-danger" for="bcMatchNo">No</label>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- MAIN CONTAINER FOR DYNAMIC BUILDINGS -->
-          <div id="buildingContainer"></div>
-
-          <button type="button" class="btn btn-dark w-100 mb-5" onclick="addBuilding()"><i class="bi bi-plus-circle"></i> + Agregar edificio</button>
         </div>
 
-        <!-- ==========================================
+        <!-- MAIN CONTAINER FOR DYNAMIC BUILDINGS -->
+        <div id="buildingContainer"></div>
+
+        <button type="button" class="btn btn-dark w-100 mb-5" onclick="addBuilding()">
+          <i class="bi bi-plus-circle"></i> + Agregar edificio
+        </button>
+      </div>
+
+      <!-- ==========================================
      TEMPLATES (Hidden from UI)
      ========================================== -->
 
-        <!-- Building Template -->
-        <template id="buildingTemplate">
-          <div class="card mb-4 shadow building-item">
-            <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-              <h5 class="mb-0 building-title">EDIFICIO #</h5>
-              <button type="button" class="btn btn-sm btn-danger" onclick="this.closest('.building-item').remove()">Eliminar edificio</button>
-            </div>
-            <div class="card-body">
-              <!-- Height -->
-              <div class="row g-2 mb-3 p-2 border rounded bg-light">
-                <div class="col-12">
-                  <h6 class="fw-bold">Altura del edificio</h6>
-                </div>
-                <div class="col-md-4">
-                  <input type="number" name="BuildingHeightPlanned_B_ID" class="form-control" placeholder="Altura planificada (m)" />
-                </div>
-                <div class="col-md-4">
-                  <input type="number" name="BuildingHeightActual_B_ID" class="form-control" placeholder="Altura actual (m)" />
-                </div>
-                <div class="col-md-4">
-                  <div class="btn-group w-100">
-                    <input type="radio" class="btn-check" name="BuildingHeightMatches_B_ID" id="hYes_B_ID" value="true" />
-                    <label class="btn btn-outline-success" for="hYes_B_ID">Concuerda</label>
-                    <input type="radio" class="btn-check" name="BuildingHeightMatches_B_ID" id="hNo_B_ID" value="false" />
-                    <label class="btn btn-outline-danger" for="hNo_B_ID">No</label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Quantity of Levels (NUEVA SECCIÓN) -->
-              <div class="row g-2 mb-4 p-2 border rounded bg-light">
-                <div class="col-12">
-                  <h6 class="fw-bold">Cantidad de niveles</h6>
-                </div>
-                <div class="col-md-4">
-                  <input type="number" name="BuildingLevelsPlanned_B_ID" class="form-control" placeholder="Niveles en planos" />
-                </div>
-                <div class="col-md-4">
-                  <input type="number" name="BuildingLevelsActual_B_ID" class="form-control" placeholder="Niveles actuales" />
-                </div>
-                <div class="col-md-4">
-                  <div class="btn-group w-100">
-                    <input type="radio" class="btn-check" name="BuildingLevelsMatches_B_ID" id="lMatchYes_B_ID" value="true" />
-                    <label class="btn btn-outline-success" for="lMatchYes_B_ID">Concuerda</label>
-                    <input type="radio" class="btn-check" name="BuildingLevelsMatches_B_ID" id="lMatchNo_B_ID" value="false" />
-                    <label class="btn btn-outline-danger" for="lMatchNo_B_ID">No</label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Level Container -->
-              <div class="level-container ms-3"></div>
-              <button type="button" class="btn btn-sm btn-outline-secondary mt-2 mb-3" onclick="addLevel(this, '_B_ID_')">+ Agregar nivel</button>
-
-              <!-- General Building Notes -->
-              <div class="mt-3 pt-3 border-top">
-                <label class="small fw-bold">Notas generales del edificio</label>
-                <textarea name="BuildingNotes_B_ID" class="form-control mt-1" rows="2" placeholder="Notas sobre fachada, estructura, etc."></textarea>
-              </div>
-            </div>
+      <!-- Building Template -->
+      <template id="buildingTemplate">
+        <div class="card mb-4 shadow building-item">
+          <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 building-title">EDIFICIO #</h5>
+            <button type="button" class="btn btn-sm btn-danger" onclick="this.closest('.building-item').remove()">
+              Eliminar edificio
+            </button>
           </div>
-        </template>
-
-        <!-- Level Template -->
-        <!-- Level Template -->
-        <template id="levelTemplate">
-          <div class="card mb-3 level-item border-info">
-            <div class="card-header bg-info text-white d-flex justify-content-between py-1 align-items-center">
-              <span class="level-title small fw-bold">NIVEL #</span>
-              <button type="button" class="btn btn-sm text-white" onclick="this.closest('.level-item').remove()">✕</button>
-            </div>
-            <div class="card-body">
-              <!-- Validation: Qty of Apartments in this Level -->
-              <div class="row g-2 mb-3 p-2 border rounded bg-light">
-                <div class="col-12">
-                  <label class="small fw-bold">Cantidad de apartamentos en este nivel</label>
-                </div>
-                <div class="col-md-4">
-                  <input type="number" name="LevelAptsPlanned_L_ID_" class="form-control form-control-sm" placeholder="En planos" />
-                </div>
-                <div class="col-md-4">
-                  <input type="number" name="LevelAptsActual_L_ID_" class="form-control form-control-sm" placeholder="Actuales" />
-                </div>
-                <div class="col-md-4">
-                  <div class="btn-group btn-group-sm w-100">
-                    <input type="radio" class="btn-check" name="LevelAptsMatches_L_ID_" id="laMatchYes_L_ID_" value="true" />
-                    <label class="btn btn-outline-success" for="laMatchYes_L_ID_">Concuerda</label>
-                    <input type="radio" class="btn-check" name="LevelAptsMatches_L_ID_" id="laMatchNo_L_ID_" value="false" />
-                    <label class="btn btn-outline-danger" for="laMatchNo_L_ID_">No</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="apartment-container"></div>
-              <button type="button" class="btn btn-sm btn-outline-info" onclick="addApartment(this, '_L_ID_')">+ Agregar apartamento</button>
-            </div>
-          </div>
-        </template>
-        <!-- Apartment Template -->
-        <template id="apartmentTemplate">
-          <div class="apartment-item p-3 mb-3 border rounded shadow-sm">
-            <div class="d-flex justify-content-between mb-2">
-              <strong class="apt-title text-primary">APARTAMENTO #</strong>
-              <button type="button" class="btn btn-sm btn-link text-danger p-0" onclick="this.closest('.apartment-item').remove()">Eliminar apartamento</button>
-            </div>
-
-            <div class="row g-3">
-              <!-- 13. Distribution -->
-              <div class="col-md-6 border-end">
-                <label class="small fw-bold">13. Distribución interior</label>
-                <div class="btn-group w-100 btn-group-sm mt-1">
-                  <input type="radio" class="btn-check" name="AptDistributionMatches_A_ID" id="dYes_A_ID" value="true" />
-                  <label class="btn btn-outline-success" for="dYes_A_ID">Concuerda</label>
-                  <input type="radio" class="btn-check" name="AptDistributionMatches_A_ID" id="dNo_A_ID" value="false" />
-                  <label class="btn btn-outline-danger" for="dNo_A_ID">No concuerda</label>
-                </div>
-              </div>
-
-              <!-- 14. Rooms -->
-              <div class="col-md-6">
-                <label class="small fw-bold">14. Cantidad de habitaciones</label>
-                <div class="input-group input-group-sm mb-2">
-                  <span class="input-group-text">Plan</span>
-                  <input type="number" name="AptRoomsPlanned_A_ID" class="form-control" placeholder="0" />
-                  <span class="input-group-text">Real</span>
-                  <input type="number" name="AptRoomsActual_A_ID" class="form-control" placeholder="0" />
-                </div>
-                <div class="btn-group w-100 btn-group-sm">
-                  <input type="radio" class="btn-check" name="AptRoomsMatches_A_ID" id="rYes_A_ID" value="true" />
-                  <label class="btn btn-outline-success" for="rYes_A_ID">Concuerda</label>
-                  <input type="radio" class="btn-check" name="AptRoomsMatches_A_ID" id="rNo_A_ID" value="false" />
-                  <label class="btn btn-outline-danger" for="rNo_A_ID">No concuerda</label>
-                </div>
-              </div>
-              <div class="col-12">
-                <textarea name="AptNotes_A_ID" class="form-control form-control-sm" placeholder="Notas para este apartamento" rows="1"></textarea>
-              </div>
-            </div>
-          </div>
-        </template>
-
-        <div class="card mb-3">
-          <div class="card-header bg-dark text-white">Linderos</div>
           <div class="card-body">
-            <!-- Sección Aplica / No Aplica -->
-            <div class="row align-items-center mb-4 g-2">
-              <div class="col-12 col-md-6">
-                <label class="fw-bold mb-0">¿Aplican los linderos en este proyecto?</label>
+            <!-- Height -->
+            <div class="row g-2 mb-3 p-2 border rounded bg-light">
+              <div class="col-12">
+                <h6 class="fw-bold">Altura del edificio</h6>
               </div>
-              <div class="col-12 col-md-6">
-                <div class="btn-group w-100" role="group">
-                  <input type="radio" class="btn-check" name="SetbacksApply" id="setbackAppliesYes" value="true" autocomplete="off" />
-                  <label class="btn btn-outline-primary" for="setbackAppliesYes">Aplica</label>
-
-                  <input type="radio" class="btn-check" name="SetbacksApply" id="setbackAppliesNo" value="false" autocomplete="off" checked />
-                  <label class="btn btn-outline-secondary" for="setbackAppliesNo">No aplica</label>
+              <div class="col-md-4">
+                <input type="number" name="BuildingHeightPlanned_B_ID" class="form-control"
+                  placeholder="Altura planificada (m)" />
+              </div>
+              <div class="col-md-4">
+                <input type="number" name="BuildingHeightActual_B_ID" class="form-control"
+                  placeholder="Altura actual (m)" />
+              </div>
+              <div class="col-md-4">
+                <div class="btn-group w-100">
+                  <input type="radio" class="btn-check" name="BuildingHeightMatches_B_ID" id="hYes_B_ID" value="true" />
+                  <label class="btn btn-outline-success" for="hYes_B_ID">Concuerda</label>
+                  <input type="radio" class="btn-check" name="BuildingHeightMatches_B_ID" id="hNo_B_ID" value="false" />
+                  <label class="btn btn-outline-danger" for="hNo_B_ID">No</label>
                 </div>
               </div>
             </div>
 
-            <!-- Contenido de Linderos -->
-            <div id="setbacksContent" style="display: none">
-              <div class="table-responsive">
-                <table class="table table-borderless align-middle">
-                  <thead class="text-secondary small">
-                    <tr>
-                      <th style="min-width: 150px">Lindero</th>
-                      <th style="min-width: 120px">Existente (m)</th>
-                      <th style="min-width: 120px">Normativa (m)</th>
-                      <th style="min-width: 200px">¿Cumple?</th>
-                      <th style="min-width: 200px">Relación</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Frontal -->
-                    <tr>
-                      <td class="fw-bold">Frontal</td>
-                      <td><input type="number" name="FrontSetbackActual" class="form-control form-control-sm" placeholder="0.00" /></td>
-                      <td><input type="number" name="FrontSetbackReq" class="form-control form-control-sm" placeholder="0.00" /></td>
-                      <td>
-                        <div class="btn-group btn-group-sm w-100">
-                          <input type="radio" class="btn-check" name="FrontSetbackMatch" id="fMatchYes" value="true" />
-                          <label class="btn btn-outline-success" for="fMatchYes">Sí</label>
-                          <input type="radio" class="btn-check" name="FrontSetbackMatch" id="fMatchNo" value="false" />
-                          <label class="btn btn-outline-danger" for="fMatchNo">No</label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="btn-group btn-group-sm w-100">
-                          <input type="radio" class="btn-check" name="FrontSetbackRelation" id="fRelGreater" value="greater" />
-                          <label class="btn btn-outline-secondary" for="fRelGreater">Mayor</label>
-                          <input type="radio" class="btn-check" name="FrontSetbackRelation" id="fRelLesser" value="lesser" />
-                          <label class="btn btn-outline-secondary" for="fRelLesser">Menor</label>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <!-- Lateral Derecho -->
-                    <tr>
-                      <td class="fw-bold">Lateral Derecho</td>
-                      <td><input type="number" name="RightSetbackActual" class="form-control form-control-sm" placeholder="0.00" /></td>
-                      <td><input type="number" name="RightSetbackReq" class="form-control form-control-sm" placeholder="0.00" /></td>
-                      <td>
-                        <div class="btn-group btn-group-sm w-100">
-                          <input type="radio" class="btn-check" name="RightSetbackMatch" id="rMatchYes" value="true" />
-                          <label class="btn btn-outline-success" for="rMatchYes">Sí</label>
-                          <input type="radio" class="btn-check" name="RightSetbackMatch" id="rMatchNo" value="false" />
-                          <label class="btn btn-outline-danger" for="rMatchNo">No</label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="btn-group btn-group-sm w-100">
-                          <input type="radio" class="btn-check" name="RightSetbackRelation" id="rRelGreater" value="greater" />
-                          <label class="btn btn-outline-secondary" for="rRelGreater">Mayor</label>
-                          <input type="radio" class="btn-check" name="RightSetbackRelation" id="rRelLesser" value="lesser" />
-                          <label class="btn btn-outline-secondary" for="rRelLesser">Menor</label>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <!-- Posterior -->
-                    <tr>
-                      <td class="fw-bold">Posterior</td>
-                      <td><input type="number" name="RearSetbackActual" class="form-control form-control-sm" placeholder="0.00" /></td>
-                      <td><input type="number" name="RearSetbackReq" class="form-control form-control-sm" placeholder="0.00" /></td>
-                      <td>
-                        <div class="btn-group btn-group-sm w-100">
-                          <input type="radio" class="btn-check" name="RearSetbackMatch" id="pMatchYes" value="true" />
-                          <label class="btn btn-outline-success" for="pMatchYes">Sí</label>
-                          <input type="radio" class="btn-check" name="RearSetbackMatch" id="pMatchNo" value="false" />
-                          <label class="btn btn-outline-danger" for="pMatchNo">No</label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="btn-group btn-group-sm w-100">
-                          <input type="radio" class="btn-check" name="RearSetbackRelation" id="pRelGreater" value="greater" />
-                          <label class="btn btn-outline-secondary" for="pRelGreater">Mayor</label>
-                          <input type="radio" class="btn-check" name="RearSetbackRelation" id="pRelLesser" value="lesser" />
-                          <label class="btn btn-outline-secondary" for="pRelLesser">Menor</label>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <!-- Lateral Izquierdo -->
-                    <tr>
-                      <td class="fw-bold">Lateral Izquierdo</td>
-                      <td><input type="number" name="LeftSetbackActual" class="form-control form-control-sm" placeholder="0.00" /></td>
-                      <td><input type="number" name="LeftSetbackReq" class="form-control form-control-sm" placeholder="0.00" /></td>
-                      <td>
-                        <div class="btn-group btn-group-sm w-100">
-                          <input type="radio" class="btn-check" name="LeftSetbackMatch" id="lMatchYes" value="true" />
-                          <label class="btn btn-outline-success" for="lMatchYes">Sí</label>
-                          <input type="radio" class="btn-check" name="LeftSetbackMatch" id="lMatchNo" value="false" />
-                          <label class="btn btn-outline-danger" for="lMatchNo">No</label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="btn-group btn-group-sm w-100">
-                          <input type="radio" class="btn-check" name="LeftSetbackRelation" id="lRelGreater" value="greater" />
-                          <label class="btn btn-outline-secondary" for="lRelGreater">Mayor</label>
-                          <input type="radio" class="btn-check" name="LeftSetbackRelation" id="lRelLesser" value="lesser" />
-                          <label class="btn btn-outline-secondary" for="lRelLesser">Menor</label>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+            <!-- Quantity of Levels (NUEVA SECCIÓN) -->
+            <div class="row g-2 mb-4 p-2 border rounded bg-light">
+              <div class="col-12">
+                <h6 class="fw-bold">Cantidad de niveles</h6>
               </div>
-              <textarea name="SetbackNotes" class="form-control mt-2" placeholder="Notas adicionales sobre linderos..." rows="2"></textarea>
+              <div class="col-md-4">
+                <input type="number" name="BuildingLevelsPlanned_B_ID" class="form-control"
+                  placeholder="Niveles en planos" />
+              </div>
+              <div class="col-md-4">
+                <input type="number" name="BuildingLevelsActual_B_ID" class="form-control"
+                  placeholder="Niveles actuales" />
+              </div>
+              <div class="col-md-4">
+                <div class="btn-group w-100">
+                  <input type="radio" class="btn-check" name="BuildingLevelsMatches_B_ID" id="lMatchYes_B_ID"
+                    value="true" />
+                  <label class="btn btn-outline-success" for="lMatchYes_B_ID">Concuerda</label>
+                  <input type="radio" class="btn-check" name="BuildingLevelsMatches_B_ID" id="lMatchNo_B_ID"
+                    value="false" />
+                  <label class="btn btn-outline-danger" for="lMatchNo_B_ID">No</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Level Container -->
+            <div class="level-container ms-3"></div>
+            <button type="button" class="btn btn-sm btn-outline-secondary mt-2 mb-3" onclick="addLevel(this, '_B_ID_')">
+              + Agregar nivel
+            </button>
+
+            <!-- General Building Notes -->
+            <div class="mt-3 pt-3 border-top">
+              <label class="small fw-bold">Notas generales del edificio</label>
+              <textarea name="BuildingNotes_B_ID" class="form-control mt-1" rows="2"
+                placeholder="Notas sobre fachada, estructura, etc."></textarea>
             </div>
           </div>
         </div>
+      </template>
 
-        <button class="btn btn-success">Guardar</button>
-      </form>
-    </div>
+      <!-- Level Template -->
+      <!-- Level Template -->
+      <template id="levelTemplate">
+        <div class="card mb-3 level-item border-info">
+          <div class="card-header bg-info text-white d-flex justify-content-between py-1 align-items-center">
+            <span class="level-title small fw-bold">NIVEL #</span>
+            <button type="button" class="btn btn-sm text-white" onclick="this.closest('.level-item').remove()">
+              ✕
+            </button>
+          </div>
+          <div class="card-body">
+            <!-- Validation: Qty of Apartments in this Level -->
+            <div class="row g-2 mb-3 p-2 border rounded bg-light">
+              <div class="col-12">
+                <label class="small fw-bold">Cantidad de apartamentos en este nivel</label>
+              </div>
+              <div class="col-md-4">
+                <input type="number" name="LevelAptsPlanned_L_ID_" class="form-control form-control-sm"
+                  placeholder="En planos" />
+              </div>
+              <div class="col-md-4">
+                <input type="number" name="LevelAptsActual_L_ID_" class="form-control form-control-sm"
+                  placeholder="Actuales" />
+              </div>
+              <div class="col-md-4">
+                <div class="btn-group btn-group-sm w-100">
+                  <input type="radio" class="btn-check" name="LevelAptsMatches_L_ID_" id="laMatchYes_L_ID_"
+                    value="true" />
+                  <label class="btn btn-outline-success" for="laMatchYes_L_ID_">Concuerda</label>
+                  <input type="radio" class="btn-check" name="LevelAptsMatches_L_ID_" id="laMatchNo_L_ID_"
+                    value="false" />
+                  <label class="btn btn-outline-danger" for="laMatchNo_L_ID_">No</label>
+                </div>
+              </div>
+            </div>
 
-    <script src="./StreetAddressIsCorrect.js"></script>
-    <script src="./MaritimeZoneApplies.js"></script>
-    <script src="./BuildingsWithin60mExist.js"></script>
-    <script src="./BeachAccessComplies.js"></script>
-    <script src="./Building.js"></script>
-    <script src="./Setbacks.js"></script>
-    <script src="./RightOfWayApplies.js"></script>
-    <script src="./WaterBodyApplies.js"></script>
-  </body>
+            <div class="apartment-container"></div>
+            <button type="button" class="btn btn-sm btn-outline-info" onclick="addApartment(this, '_L_ID_')">
+              + Agregar apartamento
+            </button>
+          </div>
+        </div>
+      </template>
+      <!-- Apartment Template -->
+      <template id="apartmentTemplate">
+        <div class="apartment-item p-3 mb-3 border rounded shadow-sm">
+          <div class="d-flex justify-content-between mb-2">
+            <strong class="apt-title text-primary">APARTAMENTO #</strong>
+            <button type="button" class="btn btn-sm btn-link text-danger p-0"
+              onclick="this.closest('.apartment-item').remove()">
+              Eliminar apartamento
+            </button>
+          </div>
+
+          <div class="row g-3">
+            <!-- 13. Distribution -->
+            <div class="col-md-6 border-end">
+              <label class="small fw-bold">13. Distribución interior</label>
+              <div class="btn-group w-100 btn-group-sm mt-1">
+                <input type="radio" class="btn-check" name="AptDistributionMatches_A_ID" id="dYes_A_ID" value="true" />
+                <label class="btn btn-outline-success" for="dYes_A_ID">Concuerda</label>
+                <input type="radio" class="btn-check" name="AptDistributionMatches_A_ID" id="dNo_A_ID" value="false" />
+                <label class="btn btn-outline-danger" for="dNo_A_ID">No concuerda</label>
+              </div>
+            </div>
+
+            <!-- 14. Rooms -->
+            <div class="col-md-6">
+              <label class="small fw-bold">14. Cantidad de habitaciones</label>
+              <div class="input-group input-group-sm mb-2">
+                <span class="input-group-text">Plan</span>
+                <input type="number" name="AptRoomsPlanned_A_ID" class="form-control" placeholder="0" />
+                <span class="input-group-text">Real</span>
+                <input type="number" name="AptRoomsActual_A_ID" class="form-control" placeholder="0" />
+              </div>
+              <div class="btn-group w-100 btn-group-sm">
+                <input type="radio" class="btn-check" name="AptRoomsMatches_A_ID" id="rYes_A_ID" value="true" />
+                <label class="btn btn-outline-success" for="rYes_A_ID">Concuerda</label>
+                <input type="radio" class="btn-check" name="AptRoomsMatches_A_ID" id="rNo_A_ID" value="false" />
+                <label class="btn btn-outline-danger" for="rNo_A_ID">No concuerda</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <textarea name="AptNotes_A_ID" class="form-control form-control-sm"
+                placeholder="Notas para este apartamento" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <div class="card mb-3">
+        <div class="card-header bg-dark text-white">Linderos</div>
+        <div class="card-body">
+          <!-- Sección Aplica / No Aplica -->
+          <div class="row align-items-center mb-4 g-2">
+            <div class="col-12 col-md-6">
+              <label class="fw-bold mb-0">¿Aplican los linderos en este proyecto?</label>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="btn-group w-100" role="group">
+                <input type="radio" class="btn-check" name="SetbacksApply" id="setbackAppliesYes" value="true"
+                  autocomplete="off" />
+                <label class="btn btn-outline-primary" for="setbackAppliesYes">Aplica</label>
+
+                <input type="radio" class="btn-check" name="SetbacksApply" id="setbackAppliesNo" value="false"
+                  autocomplete="off" checked />
+                <label class="btn btn-outline-secondary" for="setbackAppliesNo">No aplica</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido de Linderos -->
+          <div id="setbacksContent" style="display: none">
+            <div class="table-responsive">
+              <table class="table table-borderless align-middle">
+                <thead class="text-secondary small">
+                  <tr>
+                    <th style="min-width: 150px">Lindero</th>
+                    <th style="min-width: 120px">Existente (m)</th>
+                    <th style="min-width: 120px">Normativa (m)</th>
+                    <th style="min-width: 200px">¿Cumple?</th>
+                    <th style="min-width: 200px">Relación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Frontal -->
+                  <tr>
+                    <td class="fw-bold">Frontal</td>
+                    <td>
+                      <input type="number" name="FrontSetbackActual" class="form-control form-control-sm"
+                        placeholder="0.00" />
+                    </td>
+                    <td>
+                      <input type="number" name="FrontSetbackReq" class="form-control form-control-sm"
+                        placeholder="0.00" />
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm w-100">
+                        <input type="radio" class="btn-check" name="FrontSetbackMatch" id="fMatchYes" value="true" />
+                        <label class="btn btn-outline-success" for="fMatchYes">Sí</label>
+                        <input type="radio" class="btn-check" name="FrontSetbackMatch" id="fMatchNo" value="false" />
+                        <label class="btn btn-outline-danger" for="fMatchNo">No</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm w-100">
+                        <input type="radio" class="btn-check" name="FrontSetbackRelation" id="fRelGreater"
+                          value="greater" />
+                        <label class="btn btn-outline-secondary" for="fRelGreater">Mayor</label>
+                        <input type="radio" class="btn-check" name="FrontSetbackRelation" id="fRelLesser"
+                          value="lesser" />
+                        <label class="btn btn-outline-secondary" for="fRelLesser">Menor</label>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Lateral Derecho -->
+                  <tr>
+                    <td class="fw-bold">Lateral Derecho</td>
+                    <td>
+                      <input type="number" name="RightSetbackActual" class="form-control form-control-sm"
+                        placeholder="0.00" />
+                    </td>
+                    <td>
+                      <input type="number" name="RightSetbackReq" class="form-control form-control-sm"
+                        placeholder="0.00" />
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm w-100">
+                        <input type="radio" class="btn-check" name="RightSetbackMatch" id="rMatchYes" value="true" />
+                        <label class="btn btn-outline-success" for="rMatchYes">Sí</label>
+                        <input type="radio" class="btn-check" name="RightSetbackMatch" id="rMatchNo" value="false" />
+                        <label class="btn btn-outline-danger" for="rMatchNo">No</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm w-100">
+                        <input type="radio" class="btn-check" name="RightSetbackRelation" id="rRelGreater"
+                          value="greater" />
+                        <label class="btn btn-outline-secondary" for="rRelGreater">Mayor</label>
+                        <input type="radio" class="btn-check" name="RightSetbackRelation" id="rRelLesser"
+                          value="lesser" />
+                        <label class="btn btn-outline-secondary" for="rRelLesser">Menor</label>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Posterior -->
+                  <tr>
+                    <td class="fw-bold">Posterior</td>
+                    <td>
+                      <input type="number" name="RearSetbackActual" class="form-control form-control-sm"
+                        placeholder="0.00" />
+                    </td>
+                    <td>
+                      <input type="number" name="RearSetbackReq" class="form-control form-control-sm"
+                        placeholder="0.00" />
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm w-100">
+                        <input type="radio" class="btn-check" name="RearSetbackMatch" id="pMatchYes" value="true" />
+                        <label class="btn btn-outline-success" for="pMatchYes">Sí</label>
+                        <input type="radio" class="btn-check" name="RearSetbackMatch" id="pMatchNo" value="false" />
+                        <label class="btn btn-outline-danger" for="pMatchNo">No</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm w-100">
+                        <input type="radio" class="btn-check" name="RearSetbackRelation" id="pRelGreater"
+                          value="greater" />
+                        <label class="btn btn-outline-secondary" for="pRelGreater">Mayor</label>
+                        <input type="radio" class="btn-check" name="RearSetbackRelation" id="pRelLesser"
+                          value="lesser" />
+                        <label class="btn btn-outline-secondary" for="pRelLesser">Menor</label>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Lateral Izquierdo -->
+                  <tr>
+                    <td class="fw-bold">Lateral Izquierdo</td>
+                    <td>
+                      <input type="number" name="LeftSetbackActual" class="form-control form-control-sm"
+                        placeholder="0.00" />
+                    </td>
+                    <td>
+                      <input type="number" name="LeftSetbackReq" class="form-control form-control-sm"
+                        placeholder="0.00" />
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm w-100">
+                        <input type="radio" class="btn-check" name="LeftSetbackMatch" id="lMatchYes" value="true" />
+                        <label class="btn btn-outline-success" for="lMatchYes">Sí</label>
+                        <input type="radio" class="btn-check" name="LeftSetbackMatch" id="lMatchNo" value="false" />
+                        <label class="btn btn-outline-danger" for="lMatchNo">No</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm w-100">
+                        <input type="radio" class="btn-check" name="LeftSetbackRelation" id="lRelGreater"
+                          value="greater" />
+                        <label class="btn btn-outline-secondary" for="lRelGreater">Mayor</label>
+                        <input type="radio" class="btn-check" name="LeftSetbackRelation" id="lRelLesser"
+                          value="lesser" />
+                        <label class="btn btn-outline-secondary" for="lRelLesser">Menor</label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <textarea name="SetbackNotes" class="form-control mt-2" placeholder="Notas adicionales sobre linderos..."
+              rows="2"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-success">Guardar</button>
+    </form>
+  </div>
+
+  <script src="./StreetAddressIsCorrect.js"></script>
+  <script src="./MaritimeZoneApplies.js"></script>
+  <script src="./BuildingsWithin60mExist.js"></script>
+  <script src="./BeachAccessComplies.js"></script>
+  <script src="./Building.js"></script>
+  <script src="./Setbacks.js"></script>
+  <script src="./RightOfWayApplies.js"></script>
+  <script src="./WaterBodyApplies.js"></script>
+</body>
+
 </html>
