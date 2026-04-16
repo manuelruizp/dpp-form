@@ -145,7 +145,7 @@
       <!-- SECCIÓN UNIFICADA: FRANJA MARÍTIMO-TERRESTRE -->
       <div class="card mb-3">
         <div class="card-header">
-          Inspección de Franja Marítimo-Terrestre
+          Franja Marítimo-Terrestre
         </div>
         <div class="card-body">
           <!-- 1. Control Principal: Aplica o No -->
@@ -583,8 +583,9 @@
       </template>
 
       <div class="card mb-3">
-        <div class="card-header bg-dark text-white">Linderos</div>
+        <div class="card-header bg-dark text-white fw-bold">Linderos (Setbacks)</div>
         <div class="card-body">
+
           <!-- Sección Aplica / No Aplica -->
           <div class="row align-items-center mb-4 g-2">
             <div class="col-12 col-md-6">
@@ -607,27 +608,24 @@
           <div id="setbacksContent" style="display: none">
             <div class="table-responsive">
               <table class="table table-borderless align-middle">
-                <thead class="text-secondary small">
-                  <tr>
-                    <th style="min-width: 150px">Lindero</th>
-                    <th style="min-width: 120px">Existente (m)</th>
-                    <th style="min-width: 120px">Normativa (m)</th>
-                    <th style="min-width: 200px">¿Cumple?</th>
-                    <th style="min-width: 200px">Relación</th>
+                <!-- Encabezados más grandes y oscuros -->
+                <thead class="border-bottom">
+                  <tr class="text-dark">
+                    <th style="min-width: 150px" class="fw-bold">Lindero</th>
+                    <th style="min-width: 120px" class="fw-bold">Existente (m)</th>
+                    <th style="min-width: 120px" class="fw-bold">Normativa (m)</th>
+                    <th style="min-width: 200px" class="fw-bold text-center">¿Cumple?</th>
+                    <th style="min-width: 200px" class="fw-bold text-center">Relación</th>
                   </tr>
                 </thead>
                 <tbody>
                   <!-- Frontal -->
                   <tr>
                     <td class="fw-bold">Frontal</td>
-                    <td>
-                      <input type="number" name="FrontSetbackActual" class="form-control form-control-sm"
-                        placeholder="0.00" />
-                    </td>
-                    <td>
-                      <input type="number" name="FrontSetbackReq" class="form-control form-control-sm"
-                        placeholder="0.00" />
-                    </td>
+                    <td><input type="number" name="FrontSetbackActual" class="form-control form-control-sm"
+                        placeholder="0.00" /></td>
+                    <td><input type="number" name="FrontSetbackReq" class="form-control form-control-sm"
+                        placeholder="0.00" /></td>
                     <td>
                       <div class="btn-group btn-group-sm w-100">
                         <input type="radio" class="btn-check" name="FrontSetbackMatch" id="fMatchYes" value="true" />
@@ -651,14 +649,10 @@
                   <!-- Lateral Derecho -->
                   <tr>
                     <td class="fw-bold">Lateral Derecho</td>
-                    <td>
-                      <input type="number" name="RightSetbackActual" class="form-control form-control-sm"
-                        placeholder="0.00" />
-                    </td>
-                    <td>
-                      <input type="number" name="RightSetbackReq" class="form-control form-control-sm"
-                        placeholder="0.00" />
-                    </td>
+                    <td><input type="number" name="RightSetbackActual" class="form-control form-control-sm"
+                        placeholder="0.00" /></td>
+                    <td><input type="number" name="RightSetbackReq" class="form-control form-control-sm"
+                        placeholder="0.00" /></td>
                     <td>
                       <div class="btn-group btn-group-sm w-100">
                         <input type="radio" class="btn-check" name="RightSetbackMatch" id="rMatchYes" value="true" />
@@ -682,14 +676,10 @@
                   <!-- Posterior -->
                   <tr>
                     <td class="fw-bold">Posterior</td>
-                    <td>
-                      <input type="number" name="RearSetbackActual" class="form-control form-control-sm"
-                        placeholder="0.00" />
-                    </td>
-                    <td>
-                      <input type="number" name="RearSetbackReq" class="form-control form-control-sm"
-                        placeholder="0.00" />
-                    </td>
+                    <td><input type="number" name="RearSetbackActual" class="form-control form-control-sm"
+                        placeholder="0.00" /></td>
+                    <td><input type="number" name="RearSetbackReq" class="form-control form-control-sm"
+                        placeholder="0.00" /></td>
                     <td>
                       <div class="btn-group btn-group-sm w-100">
                         <input type="radio" class="btn-check" name="RearSetbackMatch" id="pMatchYes" value="true" />
@@ -713,14 +703,10 @@
                   <!-- Lateral Izquierdo -->
                   <tr>
                     <td class="fw-bold">Lateral Izquierdo</td>
-                    <td>
-                      <input type="number" name="LeftSetbackActual" class="form-control form-control-sm"
-                        placeholder="0.00" />
-                    </td>
-                    <td>
-                      <input type="number" name="LeftSetbackReq" class="form-control form-control-sm"
-                        placeholder="0.00" />
-                    </td>
+                    <td><input type="number" name="LeftSetbackActual" class="form-control form-control-sm"
+                        placeholder="0.00" /></td>
+                    <td><input type="number" name="LeftSetbackReq" class="form-control form-control-sm"
+                        placeholder="0.00" /></td>
                     <td>
                       <div class="btn-group btn-group-sm w-100">
                         <input type="radio" class="btn-check" name="LeftSetbackMatch" id="lMatchYes" value="true" />
@@ -743,11 +729,12 @@
                 </tbody>
               </table>
             </div>
-            <textarea name="SetbackNotes" class="form-control mt-2" placeholder="Notas adicionales sobre linderos..."
+            <textarea name="SetbackNotes" class="form-control mt-3" placeholder="Notas adicionales sobre linderos..."
               rows="2"></textarea>
           </div>
         </div>
       </div>
+
 
       <button class="btn btn-success">Guardar</button>
     </form>
